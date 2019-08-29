@@ -1,0 +1,37 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "jws": "^3.2.2",
+    "lodash": "^4.17.15",
+    "morgan": "^1.9.1",
+    "node-fetch": "^2.6.0",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "qs": "^6.8.0",
+    "sequelize": "^5.16.0"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "test": "mocha",
+    "test:docker": "mocha --inspect=0.0.0.0",
+    "start": "node src/server.js",
+    "start:watch": "nodemon src/server.js",
+    "start:watch:debug": "nodemon --inspect src/server.js",
+    "start:watch:debug:docker": "nodemon --inspect=0.0.0.0 src/server.js",
+    "db": "node src/db.js",
+    "console": "node -r ./src/C --experimental-repl-await"
+  },
+  "author": "",
+  "license": "ISC"
+}

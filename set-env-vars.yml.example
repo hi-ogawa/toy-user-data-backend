@@ -1,0 +1,6 @@
+--set-env-vars:
+  JWS_SECRET: '???'
+  DATABASE_URL: '???'
+  DATABASE_SSL: true
+  # JSON.stringify(["http://localhost:3000"])
+  ALLOW_ORIGIN: '["http://localhost:3000"]'

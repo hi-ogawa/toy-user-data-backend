@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  node_dev:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      target: development
+    command: sleep 10d
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:8080
+      - 9229:9229
+    environment:
+      - JWS_SECRET=c0615a0dd280019e0b3f
+      # Allow override database (e.g. for connecting production db)
+      - DATABASE_URL=${DATABASE_URL:-postgres://pguser:pgpass@postgres_dev:5432/dev}
+      - TEST_DATABASE_URL=postgres://pguser:pgpass@postgres_dev:5432/test
+      - ROOT_DATABASE_URL=postgres://pguser:pgpass@postgres_dev:5432/pguser
+      - DATABASE_SSL=${DATABASE_SSL:-}
+
+  node_prod:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      target: production
+    # For local testing
+    ports:
+      - 8080:8080
+    environment:
+      - JWS_SECRET=c0615a0dd280019e0b3f
+      - DATABASE_URL=postgres://pguser:pgpass@postgres_dev:5432/prod
+
+  postgres_dev:
+    image: postgres:11.4
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpass
+      - PGDATA=/var/lib/postgresql/data
+    volumes:
+      - postgres_dev_vol:/var/lib/postgresql/data
+
+volumes:
+  postgres_dev_vol:

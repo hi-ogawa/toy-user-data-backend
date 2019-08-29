@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Project to use cloud run
+PROJECT_ID='???'
+PROJECT_NAME='???'
+
+# Used for image name and service name
+APP_NAME='???'
+
+# "Cloud run" settings (more on "gcloud beta run deploy --help")
+REGION='???'
+PLATFORM='managed'
+DEPLOY_OPTS=(
+  --flags-file=set-env-vars.yml
+  --allow-unauthenticated
+  --memory=256Mi   # default 256Mi
+  --concurrency=10 # default 80
+  --timeout=1m     # default 5m
+)
+
+LOCAL_BUILD_CMD='docker-compose build node_prod'  # Specify how to build image locally
+LOCAL_IMAGE_NAME='study_now_serverless_node_prod' # Image to use on cloud run
+
+. '../cloud-run-script/run-main.sh'
