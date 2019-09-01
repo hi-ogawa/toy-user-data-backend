@@ -50,6 +50,9 @@ ALLOW_ORIGIN=...
 DATABASE_SSL=...
 ```
 
+Rails version
+
+- https://github.com/hi-ogawa/youtube-audio-offline/tree/master/backend
 
 References
 
